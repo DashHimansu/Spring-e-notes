@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymleaf.com"
+      th:replace="(~{base::layout(~{::section})})">
+<head>
+    <meta charset="UTF-8">
+    <title>E-notes</title>
+</head>
+<body>
+<section>
+    <div class="container my-3 p-5">
+        <form class="form-control p-5" th:action="@{/register-user}" method="post">
+            <h2>Sign Up by your credentials</h2>
+
+            <!-- alert message -->
+            <div th:if="${session.msg!=null}" class="text-center">
+                    <p class="alert alert-success text-success" th:text="${session.msg}"></p>
+<!--                <th:block th:text="${#session.removeAttribute('msg')}"></th:block>-->
+            </div>
+            <!-- alert message -->
+
+            <div class="mb-3 my-3">
+                <label for="exampleInputEmail1" class="form-label"><i class="fa-solid fa-file-signature"></i> Enter your Name</label>
+                <input type="text" name="name" class="form-control" placeholder="firstname lastname"id="exampleInputName" aria-describedby="emailHelp" autofocus required>
+            </div>
+            <div class="mb-3 my-3">
+                <label for="exampleInputEmail1" class="form-label"><i class="fa-solid fa-address-card"></i> Email address</label>
+                <input type="email" name="email" class="form-control" placeholder="abc@gmail.com"id="exampleInputEmail1" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"><i class="fa-solid fa-lock"></i> Password</label>
+                <input type="password" name="password" placeholder="*************" class="form-control" id="exampleInputPassword1">
+                </div>
+            <div class="mb-3">
+                <input type="text" name="about" class="form-control" placeholder="About your profession"id="exampleInputAbout" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3 my-3 text-center">
+                <button type="submit" class="btn btn-primary" typeof="submit"><i class="fa-solid fa-arrow-right-to-bracket"></i> Submit</button>
+                <button type="submit" class="btn btn-info mx-3" typeof="reset"><i class="fa-solid fa-trash-arrow-up"></i> Reset</button>
+            </div>
+        </form>
+    </div>
+</section>
+</body>
+</html>

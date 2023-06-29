@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymleaf.com"
+      th:replace="(~{user/base::layout(~{::section})})">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<section>
+  <div class="backimg text-center text-light">
+    <div class="my-5">
+      <h3> E-Notes Taker Svae your Notes </h3>
+      <p>An application note is a brief document that explains the technology, performance, and abilities of a certain entertaining new product </br>
+        or strategy that is targeted at the public’s interest.</br>
+        An application is also considered a marketing or advertising material and not a content for review.</p>
+      <a th:href="@{addnotes}" class="btn btn-outline-warning"><i class="fa-solid fa-pen-nib"></i> Lets start</a>
+    </div>
+  </div>
+</section>
+</body>
+</html>

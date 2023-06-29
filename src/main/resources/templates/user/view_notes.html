@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymleaf.com"
+      th:replace="(~{user/base::layout(~{::section})})">
+<head>
+  <meta charset="UTF-8">
+  <title>E-notes</title>
+</head>
+<body>
+<section>
+  <div class="container my-3">
+    <h3 class="text-center">Your Notes</h3>
+
+<!--    <div th:if="${session.msg}"-->
+<!--         class="text-center"-->
+<!--         role="alert">-->
+
+<!--      <h4 th:text="${session.msg}"></h4>-->
+<!--      <th:block th:text="${#session.removeAttribute('msg')}"></th:block>-->
+<!--    </div>-->
+    <!-- alert message -->
+    <div th:if="${session.msg}" class="text-center px-3">
+      <strong><p class="alert alert-info alert-dismissible" role="alert" th:text="${session.msg}">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></p></strong>
+
+      <!--                <th:block th:text="${#session.removeAttribute('msg')}"></th:block>-->
+    </div>
+    <!-- alert message -->
+    <div class="col-md-12 mt-3" th:each="n:${Notes}">
+      <div class="card paint-card">
+        <div class="card-body">
+          <div class="text-center">
+            <img alt="" th:src="@{/image/paper.png}"
+                 style="width: 50px; height: 50px;">
+          </div>
+
+          <h5>[[${n.title}]]</h5>
+          <p>
+            [[${n.content}]] <br> <br> <span class="font-weight-bold">Upload
+								Date :</span> [[${n.updateDate}]]
+
+          </p>
+          <div class="text-center">
+            <a th:href="@{'/user/editnotes/'+ ${n.id}}" class="btn btn-primary btn-sm mx-3"><i class="fa-solid fa-pen-nib"></i> Edit</a>
+
+            <a th:href="@{'/user/deletenotes/'+ ${n.id}}" class="btn btn-danger btn-sm ml-2"><i class="fa-solid fa-trash"></i> Delete</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row p-4">
+      <div class="col-md-4">Total Elements : [[${totalElement}]]</div>
+        <div class="col-md-6">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li th:classappend="${pageNo==0}?'disabled':''" class="page-item">
+                <a class="page-link" th:href="@{'/user/viewnotes/' + ${pageNo-1} }">Previous</a>
+              </li>
+
+              <li class="page-item" th:each="i:${#numbers.sequence(1,totalPage)}"
+                  th:classappend="${pageNo+1==i}?'active':''">
+                <a class="page-link" th:href="@{'/user/viewnotes/' + ${i-1} }">
+                [[${i}]]
+              </a>
+              </li>
+
+              <li th:classappend="${pageNo+1==totalPage}?'disabled':''" class="page-item">
+                <a th:href="@{'/user/viewnotes/' + ${pageNo+1} }" class="page-link" href="#">Next</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+</body>
+</html>

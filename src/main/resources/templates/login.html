@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymleaf.com"
+      th:replace="(~{base::layout(~{::section})})">
+<head>
+    <meta charset="UTF-8">
+    <title>E-notes </title>
+</head>
+<body>
+<section>
+    <div class="container my-3 p-5">
+    <form class="form-control p-5" th:action="@{/login}" method="post">
+        <h2>Login by your credentials</h2>
+        <!-- alert message -->
+        <div th:if="${param.error}" class="text-center">
+            <p class="alert alert-danger text-success">Invalid UserName & Password</p>
+        </div>
+        <div th:if="${param.logout}" class="text-center">
+            <p class="alert alert-info text-success">Logout Successfully</p>
+        </div>
+        <!-- alert message -->
+        <div class="mb-3 my-3">
+            <label for="username" class="form-label"><i class="fa-solid fa-address-card"></i> Email address</label>
+            <input type="email" name="username" class="form-control" placeholder="abc@gmail.com"id="username" aria-describedby="emailHelp" autofocus required>
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label"><i class="fa-solid fa-lock"></i> Password</label>
+            <input type="password" name="password" placeholder="*************" class="form-control" id="password" required>
+        </div>
+        <div class="mb-3 my-3 text-center">
+        <button class="btn btn-primary" typeof="submit"><i class="fa-solid fa-arrow-right-to-bracket"></i> Submit</button></br>
+            Or
+            <a th:href="@{/signup}" class="text-primary">create a new account ?</a>
+        </div>
+    </form>
+    </div>
+</section>
+</body>
+</html>
